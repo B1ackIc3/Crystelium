@@ -24,7 +24,18 @@ namespace Cysteel.Items
 			item.rare = ItemRarityID.LightRed;
 			item.value = 100000;
 			item.accessory = true;
-		}
 
+		}
+		public override void AddRecipes()
+		{
+			ModRecipe recipe = new ModRecipe(mod);
+			recipe.AddIngredient(ItemID.PearlsandBlock, 40);
+			recipe.AddIngredient(ItemID.PearlstoneBlock, 40);
+			recipe.AddIngredient(ItemID.SoulofLight, 10);
+			recipe.AddIngredient(ItemID.SoulofNight, 10);
+			recipe.AddTile(TileID.MythrilAnvil);
+			recipe.SetResult(this);
+			recipe.AddRecipe();
+		}
 	}
 }
