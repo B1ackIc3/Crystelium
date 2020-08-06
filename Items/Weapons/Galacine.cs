@@ -58,11 +58,11 @@ namespace Cysteel.Items.Weapons
         public override void AddRecipes()
         {
             ModRecipe recipe = new ModRecipe(mod);
-            recipe.AddIngredient(ItemID.PearlsandBlock, 40);
-            recipe.AddIngredient(ItemID.PearlstoneBlock, 40);
-            recipe.AddIngredient(ItemID.SoulofLight, 10);
-            recipe.AddIngredient(ItemID.SoulofNight, 10);
-            recipe.AddTile(TileID.MythrilAnvil);
+            recipe.AddIngredient(ItemID.LunarBar, 45);
+            recipe.AddIngredient(ItemID.FragmentNebula, 10);
+            recipe.AddIngredient(ItemID.LastPrism, 1);
+            recipe.AddIngredient(ItemID.FallenStar, 100);
+            recipe.AddTile(TileID.LunarCraftingStation);
             recipe.SetResult(this);
             recipe.AddRecipe();
         }

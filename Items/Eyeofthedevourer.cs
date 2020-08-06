@@ -26,9 +26,9 @@ namespace Cysteel.Items
 			item.width = 32;
 			item.height = 32;
 			item.accessory = true;
-			item.defense = 5;
-			item.lifeRegen += 25;
-			item.value = Item.sellPrice(silver: 30);
+			item.defense = 25;
+			item.lifeRegen += 50;
+			item.value = 10000000;
 			item.rare = ItemRarityID.Blue;
 		}
 
