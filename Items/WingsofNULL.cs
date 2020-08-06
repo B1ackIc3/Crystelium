@@ -11,7 +11,7 @@ namespace Cysteel.Items
 		public override void SetStaticDefaults()
 		{
 			DisplayName.SetDefault("Wings of NULL");
-			Tooltip.SetDefault("Flashy wings not even singers would wear");
+			Tooltip.SetDefault("Who wouldn't want to fly in style Viddy?");
 		}
 
 		public override void SetDefaults()
