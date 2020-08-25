@@ -126,13 +126,13 @@ namespace Cysteel
 		//	score = reader.ReadInt32();
 		//}
 
-		public override void SetupStartInventory(IList<Item> items, bool mediumcoreDeath)
-		{
-			Item item = new Item();
-			item.SetDefaults(ItemType<Galacine>());
-			item.stack = 1;
-			items.Add(item);
-		}
+		//public override void SetupStartInventory(IList<Item> items, bool mediumcoreDeath)
+		//{
+		//	Item item = new Item();
+		//	item.SetDefaults(ItemType<Galacine>());
+		//	item.stack = 1;
+		//	items.Add(item);
+		//}
 
 		//public override void UpdateBiomes()
 		//{
