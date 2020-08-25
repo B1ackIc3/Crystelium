@@ -9,7 +9,7 @@ namespace Cysteel.Items
 		public override void SetStaticDefaults()
 		{
 			DisplayName.SetDefault("Music Box (CursoryMusicBox)");
-			Tooltip.SetDefault("Plays 'Cursory Construction' by B1ackIc3 B-Matter");
+			Tooltip.SetDefault("Plays -=Cursory Construction=- by B1ackIc3 B-Matter");
 		}
 
 		public override void SetDefaults()
@@ -19,11 +19,13 @@ namespace Cysteel.Items
 			item.useAnimation = 15;
 			item.useTime = 10;
 			item.autoReuse = true;
+			item.consumable = true;
 			item.width = 24;
 			item.height = 24;
 			item.rare = ItemRarityID.LightRed;
 			item.value = 100000;
 			item.accessory = true;
+			item.createTile = TileType<Tiles.CursoryMusicBox>();
 
 		}
 		public override void AddRecipes()

@@ -5,6 +5,7 @@ using Terraria;
 using Terraria.ID;
 using static Terraria.ModLoader.ModContent;
 using Terraria.ModLoader;
+using Cysteel.Buffs;
 
 namespace Cysteel.Projectiles
 {
@@ -21,20 +22,17 @@ namespace Cysteel.Projectiles
             projectile.tileCollide = true;
             projectile.ignoreWater = true;
         }
-       
+
         public override void OnHitNPC(NPC target, int damage, float knockback, bool crit)
         {
-            target.AddBuff(BuffID.OnFire, 1200);
-            target.AddBuff(BuffID.Frostburn, 1200);
-            target.AddBuff(BuffID.ShadowFlame, 1200);
-            target.AddBuff(BuffID.CursedInferno, 1200);
+            target.AddBuff(ModContent.BuffType<SinglaicInferno>(), 600);
         }
 
         public override void AI()
         {
             projectile.rotation += 2f;
             projectile.localAI[0] += 1f;
-            if (projectile.localAI[0] > 3600f) //projectile time left before disappears
+            if (projectile.localAI[0] > 60) //projectile time left before disappears
             {
                 projectile.Kill();
 

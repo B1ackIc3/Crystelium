@@ -1,6 +1,4 @@
 using Cysteel.Projectiles;
-using Cysteel.Sounds.Item;
-using Cysteel.Items.Placeable;
 using Cysteel.Tiles;
 using Terraria.DataStructures;
 using Terraria;
@@ -11,42 +9,42 @@ using static Terraria.ModLoader.ModContent;
 
 namespace Cysteel.Items.Weapons
 {
-    public class Galacine : ModItem
+    public class gun : ModItem
     {
         public static Color OverrideColor = new Color(155, 79, 150);
 
         public override void SetStaticDefaults()
         {
-            DisplayName.SetDefault("Galacine");
-            Tooltip.SetDefault("Galacine, the sword birthed with the universe it's self.");
-             //Main.RegisterItemAnimation(item.type, new DrawAnimationVertical(1, 12));
+            DisplayName.SetDefault("gun");
+            Tooltip.SetDefault("It's Void Matters first gun.");
+            //Main.RegisterItemAnimation(item.type, new DrawAnimationVertical(1, 12));
             //ItemID.Sets.AnimatesAsSoul[item.type] = true;
             //ItemID.Sets.ItemIconPulse[item.type] = false;
         }
-        
+
         public override void SetDefaults()
         {
-            item.damage = 2000;
+            item.damage = 10000;
             item.channel = true;
             item.shootSpeed = 70f;
-            item.shoot = ProjectileType<GalacineHoldout>();
+            item.shoot = ProjectileType<Projectiles.SinglaicBullet>();
             item.noMelee = false;
-            item.magic = true;
+            item.ranged = true;
             item.width = 40;
             item.height = 40;
             item.useTime = 1;
-            item.useAnimation = 20;
+            item.useAnimation = 10;
             item.useStyle = ItemUseStyleID.HoldingOut;
             item.knockBack = 60;
             item.value = 10000;
             item.rare = ItemRarityID.Red;
-            item.UseSound = mod.GetLegacySoundSlot(SoundType.Item, "Sounds/Item/GalacineSound");
+            item.UseSound = SoundID.Item11;
             item.autoReuse = true;
-            item.crit = 25;
+            item.crit = 15;
         }
         public override bool Shoot(Player player, ref Vector2 position, ref float speedX, ref float speedY, ref int type, ref int damage, ref float knockBack)
         {
-            float numberProjectiles = 3 + Main.rand.Next(1); // 3, 4, or 5 shots
+            float numberProjectiles = 20 + Main.rand.Next(1); // 3, 4, or 5 shots
             float rotation = MathHelper.ToRadians(5);
             position += Vector2.Normalize(new Vector2(speedX, speedY)) * 0f;
             for (int i = 0; i < numberProjectiles; i++)
@@ -60,45 +58,13 @@ namespace Cysteel.Items.Weapons
         public override void AddRecipes()
         {
             ModRecipe recipe = new ModRecipe(mod);
-            recipe.AddIngredient(ItemType<Items.Placeable.CytoxicSteelBar>(), 35);
-            recipe.AddIngredient(ItemID.FragmentNebula, 10);
-            recipe.AddIngredient(ItemID.LastPrism, 1);
-            recipe.AddIngredient(ItemID.FallenStar, 100);
+            recipe.AddIngredient(ItemType<Items.Placeable.CytoxicSteelBar>(), 25);
+            recipe.AddIngredient(ItemID.FragmentVortex, 10);
+            recipe.AddIngredient(ItemID.VortexBeater, 1);
+            recipe.AddIngredient(ItemID.EndlessMusketPouch, 1);
             recipe.AddTile(TileID.LunarCraftingStation);
             recipe.SetResult(this);
             recipe.AddRecipe();
         }
-
-
-        public override bool AltFunctionUse(Player player)
-        {
-
-            return true;
-        }
-
-        public override bool CanUseItem(Player player)
-        {
-            if (player.altFunctionUse == 2)
-            {
-                item.shootSpeed = 10f;
-                item.useStyle = 5;
-                item.useTime = 2;
-                item.useAnimation = 20;
-                item.shoot = ProjectileType<SkyCrystal>();
-                item.UseSound = SoundID.Item11;
-            }
-            else
-            {
-                item.shootSpeed = 90;
-                item.useStyle = ItemUseStyleID.HoldingOut;
-                item.useTime = 1;
-                item.useAnimation = 40;
-                item.shoot = ProjectileType<GalacineHoldout>();
-                item.UseSound = mod.GetLegacySoundSlot(SoundType.Item, "Sounds/Item/GalacineSound");
-            }
-            return base.CanUseItem(player);
-        }
     }
 }
-
-

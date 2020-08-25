@@ -2,9 +2,12 @@ using Cysteel.Items.Weapons;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Terraria;
+using Cysteel.Sounds.Item;
 using Terraria.ID;
 using Terraria.ModLoader;
 using static Terraria.ModLoader.ModContent;
+using Cysteel.Buffs;
+using Cysteel.NPCs;
 
 namespace Cysteel.Projectiles
 {
@@ -19,7 +22,7 @@ namespace Cysteel.Projectiles
 		public const int NumBeams = 2;
 
 		// This value controls how many frames it takes for the Prism to reach "max charge". 60 frames = 1 second.
-		public const float MaxCharge = 300f;
+		public const float MaxCharge = 200f;
 
 		// This value controls how many frames it takes for the beams to begin dealing damage. Before then they can't hit anything.
 		public const float DamageStart = 60f;
@@ -29,7 +32,7 @@ namespace Cysteel.Projectiles
 		private const float AimResponsiveness = 0.1f;
 
 		// This value controls how frequently the Prism emits sound once it's firing.
-		private const int SoundInterval = 20;
+		private const int SoundInterval = 1;
 
 		// These values place caps on the mana consumption rate of the Prism.
 		// When first used, the Prism consumes mana once every MaxManaConsumptionDelay frames.
@@ -159,7 +162,7 @@ namespace Cysteel.Projectiles
 				// On the very first frame, the sound playing is skipped. This way it doesn't overlap the starting hiss sound.
 				if (FrameCounter > 1f)
 				{
-					Main.PlaySound(SoundID.Item15, projectile.position);
+					Main.PlaySound (mod.GetLegacySoundSlot(SoundType.Item, "Sounds/Item/GalacineSound"));
 				}
 			}
 		}
@@ -263,5 +266,10 @@ namespace Cysteel.Projectiles
 			spriteBatch.Draw(texture, sheetInsertPosition, new Rectangle?(new Rectangle(0, spriteSheetOffset, texture.Width, frameHeight)), drawColor, projectile.rotation, new Vector2(texture.Width / 2f, frameHeight / 2f), projectile.scale, effects, 0f);
 			return false;
 		}
+
+			public override void OnHitNPC(NPC target, int damage, float knockback, bool crit)
+		{
+			target.AddBuff(ModContent.BuffType<SinglaicInferno>(), 300);
+		}
 	}
-}
+	}

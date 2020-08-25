@@ -2,6 +2,7 @@ using Terraria;
 using Terraria.ModLoader;
 using Terraria.ID;
 using static Terraria.ModLoader.ModContent;
+using Cysteel.Items.Placeable;
 
 namespace Cysteel.Items
 {
@@ -11,7 +12,7 @@ namespace Cysteel.Items
 		public override void SetStaticDefaults()
 		{
 			DisplayName.SetDefault("Wings of NULL");
-			Tooltip.SetDefault("Who wouldn't want to fly in style Viddy?");
+			Tooltip.SetDefault("'Who wouldn't want to fly in style Viddy?'");
 		}
 
 		public override void SetDefaults()
@@ -19,7 +20,7 @@ namespace Cysteel.Items
 			item.width = 30;
 			item.height = 28;
 			item.value = 10;
-			item.rare = 2;
+			item.rare = ItemRarityID.Cyan;
 			item.accessory = true;
 		}
 		//these wings use the same values as the solar wings
@@ -47,7 +48,7 @@ namespace Cysteel.Items
 		public override void AddRecipes()
 		{
 			ModRecipe recipe = new ModRecipe(mod);
-			recipe.AddIngredient(ItemID.LunarBar, 30);
+			recipe.AddIngredient(ItemType<Items.Placeable.CytoxicSteelBar>(), 25);
 			recipe.AddIngredient(ItemID.FragmentNebula, 5);
 			recipe.AddIngredient(ItemID.WingsNebula, 1);
 			recipe.AddIngredient(ItemID.FallenStar, 50);

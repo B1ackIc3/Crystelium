@@ -8,6 +8,10 @@ using Terraria.GameContent.Shaders;
 using Terraria.Graphics.Effects;
 using Terraria.ID;
 using Terraria.ModLoader;
+using Cysteel.Buffs;
+using Cysteel.NPCs;
+using Cysteel.Items;
+using Cysteel.Tiles;
 
 namespace Cysteel.Projectiles
 {
@@ -17,13 +21,13 @@ namespace Cysteel.Projectiles
 		private const float PiBeamDivisor = MathHelper.Pi / GalacineHoldout.NumBeams;
 
 		// How much more damage the beams do when the Prism is fully charged. Damage smoothly scales up to this multiplier.
-		private const float MaxDamageMultiplier = 15f;
+		private const float MaxDamageMultiplier = 3f;
 
 		// Beams increase their scale from 0 to this value as the Prism charges up.
-		private const float MaxBeamScale =	1f;
+		private const float MaxBeamScale =	0.75f;
 
 		// Beams reduce their spread to zero as the Prism charges up. This controls the maximum spread.
-		private const float MaxBeamSpread = 0.50f;
+		private const float MaxBeamSpread = 0.75f;
 
 		// The maximum possible range of the beam. Don't set this too high or it will cause significant lag.
 		private const float MaxBeamLength = 2400f;
@@ -38,7 +42,7 @@ namespace Cysteel.Projectiles
 
 		// The number of sample points to use when performing a collision hitscan for the beam.
 		// More points theoretically leads to a higher quality result, but can cause more lag. 3 tends to be enough.
-		private const int NumSamplePoints = 3;
+		private const int NumSamplePoints = 4;
 
 		// How quickly the beam adjusts to sudden changes in length.
 		// Every frame, the beam replaces this ratio of its current length with its intended length.
@@ -50,11 +54,11 @@ namespace Cysteel.Projectiles
 		private const float VisualEffectThreshold = 0.1f;
 
 		// Each Last Prism beam draws two lasers separately: an inner beam and an outer beam. This controls their opacity.
-		private const float OuterBeamOpacityMultiplier = 0.50f;
+		private const float OuterBeamOpacityMultiplier = 0.35f;
 		private const float InnerBeamOpacityMultiplier = 0.75f;
 
 		// The maximum brightness of the light emitted by the beams. Brightness scales from 0 to this value as the Prism's charge increases.
-		private const float BeamLightBrightness = 100f;
+		private const float BeamLightBrightness = 10f;
 
 		// These variables control the beam's potential coloration.
 		// As a value, hue ranges from 0f to 1f, both of which are pure red. The laser beams vary from 0.57 to 0.75, which winds up being a blue-to-purple gradient.
@@ -62,8 +66,8 @@ namespace Cysteel.Projectiles
 		// Lightness ranges from 0f to 1f and controls how dark or light the color is. 0 is pitch black. 1 is pure white.
 		private const float BeamColorHue = 0.57f;
 		private const float BeamHueVariance = 0.25f;
-		private const float BeamColorSaturation = 0.50f;
-		private const float BeamColorLightness = 0.35f;
+		private const float BeamColorSaturation = 0.5f;
+		private const float BeamColorLightness = 0.45f;
 
 		// This property encloses the internal AI variable projectile.ai[0]. It makes the code easier to read.
 		private float BeamID
@@ -394,10 +398,7 @@ namespace Cysteel.Projectiles
 		}
 		public override void OnHitNPC(NPC target, int damage, float knockback, bool crit)
 		{
-			target.AddBuff(BuffID.OnFire, 1200);
-			target.AddBuff(BuffID.Frostburn, 1200);
-			target.AddBuff(BuffID.ShadowFlame, 1200);
-			target.AddBuff(BuffID.CursedInferno, 1200);
+			target.AddBuff(ModContent.BuffType<SinglaicInferno>(), 300);
 		}
 	}
 }
